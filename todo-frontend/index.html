@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>To Do App</title>
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+  <form id="item-form">
+    <input type="text" id="task" placeholder="Task" required>
+    <input type="date" id="date" required>
+    <label>
+      <input type="checkbox" id="completed">
+      Completed
+    </label>
+    <button type="submit">Add</button>
+  </form>
+  
+  <!-- To dos -->
+  <ul id="item-list"></ul>
+
+  <!-- Errors -->
+  <div id="error-box"></div>
+
+  <!-- Scripts -->
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
