@@ -8,23 +8,28 @@
 </head>
 <body>
 
-  <form id="item-form">
-    <input type="text" id="task" placeholder="Task" required>
-    <input type="date" id="date" required>
-    <label>
-      <input type="checkbox" id="completed">
-      Completed
-    </label>
-    <button type="submit">Add</button>
-  </form>
-  
-  <!-- To dos -->
-  <ul id="item-list"></ul>
+  <div class="app-container">
 
-  <!-- Errors -->
-  <div id="error-box"></div>
+    <header class="app-header">
+      <h1 class="app-title">Todo App</h1>
+      <p class="app-subtitle">Organize tasks. Stay consistent.</p>
+    </header>
 
-  <!-- Scripts -->
+    <form id="item-form">
+      <input type="text" id="task" placeholder="Task" required>
+      <input type="date" id="date" required>
+      <label>
+        <input type="checkbox" id="completed">
+        Completed
+      </label>
+      <button type="submit">Add</button>
+    </form>
+
+    <ul id="item-list"></ul>
+    <div id="error-box"></div>
+
+  </div>
+
   <script type="module" src="./js/main.js"></script>
 </body>
 </html>

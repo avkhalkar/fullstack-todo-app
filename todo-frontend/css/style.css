@@ -1,5 +1,5 @@
 /* ============================================
-   RESET & BASE STYLES
+   RESET & VARIABLES
    ============================================ */
 
 * {
@@ -11,7 +11,6 @@
 :root {
   --primary-color: #4f46e5;
   --primary-hover: #4338ca;
-  --secondary-color: #6366f1;
   --text-primary: #1f2937;
   --text-secondary: #6b7280;
   --border-color: #e5e7eb;
@@ -19,35 +18,65 @@
   --bg-secondary: #f9fafb;
   --success-color: #10b981;
   --danger-color: #ef4444;
+
   --spacing-sm: 0.75rem;
   --spacing-md: 1rem;
   --spacing-lg: 1.5rem;
   --spacing-xl: 2rem;
+
   --radius: 8px;
 }
 
+/* ============================================
+   BASE LAYOUT (MOBILE FIRST)
+   ============================================ */
+
 body {
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', sans-serif;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto',
+    'Oxygen', 'Ubuntu', 'Cantarell', sans-serif;
   background-color: var(--bg-secondary);
   color: var(--text-primary);
   line-height: 1.6;
-  padding: var(--spacing-xl);
+}
+
+.app-container {
   max-width: 800px;
   margin: 0 auto;
+  padding: var(--spacing-md);
 }
 
 /* ============================================
-   FORM STYLING
+   APP HEADING
+   ============================================ */
+
+.app-header {
+  text-align: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.app-title {
+  font-size: clamp(1.6rem, 5vw, 2.25rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 0.25rem;
+}
+
+.app-subtitle {
+  font-size: clamp(0.9rem, 3.5vw, 1rem);
+  color: var(--text-secondary);
+}
+
+/* ============================================
+   FORM
    ============================================ */
 
 #item-form {
   background: var(--bg-color);
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
-  padding: var(--spacing-lg);
-  margin-bottom: var(--spacing-xl);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  padding: var(--spacing-md);
+  margin-bottom: var(--spacing-lg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 #item-form input[type="text"],
@@ -59,19 +88,11 @@ body {
   border-radius: var(--radius);
   font-size: 1rem;
   font-family: inherit;
-  background: var(--bg-color);
-  color: var(--text-primary);
-  transition: border-color 0.2s;
 }
 
-#item-form input[type="text"]:focus,
-#item-form input[type="date"]:focus {
+#item-form input:focus {
   outline: none;
   border-color: var(--primary-color);
-}
-
-#item-form input[type="text"]::placeholder {
-  color: var(--text-secondary);
 }
 
 #item-form label {
@@ -79,40 +100,33 @@ body {
   align-items: center;
   gap: var(--spacing-sm);
   margin-bottom: var(--spacing-md);
-  color: var(--text-primary);
   cursor: pointer;
 }
 
 #item-form input[type="checkbox"] {
   width: 18px;
   height: 18px;
-  cursor: pointer;
   accent-color: var(--primary-color);
 }
 
-#item-form button[type="submit"] {
-  background-color: var(--primary-color);
+#item-form button {
+  width: 100%;
+  padding: var(--spacing-sm);
+  background: var(--primary-color);
   color: white;
   border: none;
   border-radius: var(--radius);
-  padding: var(--spacing-sm) var(--spacing-lg);
   font-size: 1rem;
   font-weight: 500;
   cursor: pointer;
-  transition: background-color 0.2s;
-  width: 100%;
 }
 
-#item-form button[type="submit"]:hover {
-  background-color: var(--primary-hover);
-}
-
-#item-form button[type="submit"]:active {
-  transform: scale(0.98);
+#item-form button:hover {
+  background: var(--primary-hover);
 }
 
 /* ============================================
-   TODO LIST STYLING
+   TODO LIST
    ============================================ */
 
 #item-list {
@@ -123,41 +137,24 @@ body {
   background: var(--bg-color);
   border: 1px solid var(--border-color);
   border-radius: var(--radius);
-  padding: var(--spacing-md) var(--spacing-lg);
+  padding: var(--spacing-md);
   margin-bottom: var(--spacing-md);
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: var(--spacing-md);
-  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
-  transition: box-shadow 0.2s;
-}
-
-#item-list li:hover {
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  flex-direction: column;
+  gap: var(--spacing-sm);
 }
 
 #item-list li strong {
-  font-size: 1rem;
   font-weight: 500;
-  color: var(--text-primary);
-  flex: 1;
 }
 
-/* Date styling - if you want to show it inline */
-#item-list li {
-  flex-wrap: wrap;
-}
-
-/* Buttons in List Items */
 #item-list button {
-  padding: 0.5rem var(--spacing-md);
-  border: 1px solid var(--border-color);
+  width: 100%;
+  padding: 0.5rem;
   border-radius: var(--radius);
-  font-size: 0.875rem;
-  font-weight: 500;
+  border: 1px solid var(--border-color);
+  font-size: 0.9rem;
   cursor: pointer;
-  transition: all 0.2s;
   background: var(--bg-color);
 }
 
@@ -167,7 +164,7 @@ body {
 }
 
 #item-list button[data-edit]:hover {
-  background-color: var(--primary-color);
+  background: var(--primary-color);
   color: white;
 }
 
@@ -177,25 +174,21 @@ body {
 }
 
 #item-list button[data-delete]:hover {
-  background-color: var(--danger-color);
+  background: var(--danger-color);
   color: white;
 }
 
-#item-list button:active {
-  transform: scale(0.95);
-}
-
 /* ============================================
-   ERROR BOX STYLING
+   ERROR BOX
    ============================================ */
 
 #error-box {
-  margin-top: var(--spacing-lg);
+  margin-top: var(--spacing-md);
 }
 
 #error-box ul {
   list-style: none;
-  background-color: #fee2e2;
+  background: #fee2e2;
   border: 1px solid #fecaca;
   border-radius: var(--radius);
   padding: var(--spacing-md);
@@ -203,36 +196,26 @@ body {
 
 #error-box li {
   color: var(--danger-color);
-  padding: var(--spacing-sm) 0;
-}
-
-#error-box li:first-child {
-  padding-top: 0;
-}
-
-#error-box li:last-child {
-  padding-bottom: 0;
+  padding: 0.25rem 0;
 }
 
 /* ============================================
-   RESPONSIVE DESIGN
+   DESKTOP ENHANCEMENTS
    ============================================ */
 
-@media (max-width: 768px) {
-  body {
-    padding: var(--spacing-md);
+@media (min-width: 768px) {
+  .app-container {
+    padding: var(--spacing-xl);
   }
 
   #item-list li {
-    flex-direction: column;
-    align-items: flex-start;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
   }
 
   #item-list button {
-    width: 100%;
-  }
-
-  #item-list button[data-edit] {
-    margin-bottom: var(--spacing-sm);
+    width: auto;
+    min-width: 90px;
   }
 }
