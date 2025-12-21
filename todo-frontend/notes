@@ -1,5 +1,0 @@
-// npm install dotenv
-
-// General syntax:
-// const res = fetch(url, options)
-// fetch is in-built JS function which returns promises .json() converts tbose to data which is needed
