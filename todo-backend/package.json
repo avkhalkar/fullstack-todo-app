@@ -2,12 +2,10 @@
  "scripts": {
   "test": "echo \"Error: no test specified\" && exit 1",
   "build:css": "npx @tailwindcss/cli -i ./views/input.css -o ./public/output.css --watch",
-  "start": "concurrently \"nodemon server.js\" \"npm run build:css\""
+  "start": "nodemon server.js"
  },
  "devDependencies": {
-  "concurrently": "^9.2.1",
-  "nodemon": "^3.1.11",
-  "tailwind": "tailwindcss/cli -i ./views/input.css -o ./public/output.css --watch"
+  "nodemon": "^3.1.11"
  },
  "dependencies": {
   "@tailwindcss/postcss": "^4.1.17",
