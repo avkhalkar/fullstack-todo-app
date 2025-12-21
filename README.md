@@ -1,147 +1,200 @@
-Fullstack Todo App
+# Fullstack Todo App
 
-A modular full-stack Todo application built with Node.js, Express, and MongoDB, with a vanilla JavaScript (ES modules) frontend.
-Demonstrates RESTful CRUD APIs, MVC structure, server-side validation, and async client–server communication.
+A modular full-stack Todo application demonstrating RESTful CRUD APIs, MVC architecture, server-side validation, and async client-server communication using Node.js, Express, MongoDB, and vanilla JavaScript.
 
-Repository: https://github.com/avkhalkar/fullstack-todo-app
+**Repository:** [github.com/avkhalkar/fullstack-todo-app](https://github.com/avkhalkar/fullstack-todo-app)
 
-About
+---
 
-This project is an educational full-stack example showing how to:
+## Overview
 
-Structure a Node/Express backend using MVC
+This educational project showcases how to build a complete full-stack application with:
 
-Build RESTful CRUD APIs
+- Structured Node/Express backend using MVC pattern
+- RESTful CRUD APIs with proper error handling
+- Server-side validation using express-validator
+- Vanilla JavaScript frontend consuming APIs via Fetch
+- MongoDB persistence layer with Mongoose ODM
 
-Validate requests with express-validator
+---
 
-Consume APIs using fetch from vanilla JS
+## Features
 
-Persist data with MongoDB (Mongoose)
+- **CRUD Operations**: Create, read, update, and delete todos
+- **Input Validation**: Server-side validation with detailed error messages
+- **Clean Architecture**: Separation of concerns with routes, controllers, and models
+- **Async Communication**: Modern fetch-based API calls from the frontend
+- **Data Persistence**: MongoDB storage with Mongoose schemas
 
-Features
+---
 
-Create, read, update, delete todos
+## Tech Stack
 
-Server-side input validation
+### Backend
+- Node.js
+- Express.js
+- MongoDB + Mongoose
+- express-validator
 
-Clean separation: routes, controllers, models, frontend
+### Frontend
+- HTML5 & CSS3
+- Vanilla JavaScript (ES modules)
+- Fetch API
 
-Async API communication
+---
 
-Tech Stack
+## Project Structure
 
-Backend
-
-Node.js
-
-Express.js
-
-MongoDB + Mongoose
-
-express-validator
-
-Frontend
-
-HTML, CSS
-
-Vanilla JavaScript (ES modules)
-
-Fetch API
-
-Project Structure
+```
 fullstack-todo-app/
-├─ todo-backend/    # Express server, routes, controllers, models
-├─ todo-frontend/   # Static frontend (HTML/CSS/JS)
+├─ todo-backend/          # Express server
+│  ├─ routes/             # API route definitions
+│  ├─ controllers/        # Business logic
+│  ├─ models/             # Mongoose schemas
+│  └─ ...
+├─ todo-frontend/         # Static frontend
+│  ├─ index.html
+│  ├─ style.css
+│  ├─ app.js
+│  └─ ...
 ├─ README.md
 └─ LICENSE
+```
 
-Quick Start (Local)
-Prerequisites
+---
 
-Node.js (v16+)
+## Getting Started
 
-MongoDB (local or Atlas)
+### Prerequisites
 
-1) Clone
+- Node.js (v16 or higher)
+- MongoDB (local instance or MongoDB Atlas)
+
+### Installation
+
+**1. Clone the repository**
+
+```bash
 git clone https://github.com/avkhalkar/fullstack-todo-app.git
 cd fullstack-todo-app
+```
 
-2) Backend
+**2. Set up the backend**
+
+```bash
 cd todo-backend
 npm install
+```
 
+Create a `.env` file in the `todo-backend` directory:
 
-Create .env:
-
+```env
 PORT=3000
-MONGODB_URI=mongodb://localhost:27017/fullstack-todo-app
+MONGODB_URI=<your-mongodb-atlas-connection-string>
+```
 
+**Note:** Please create a MongoDB Atlas cluster and replace `<your-mongodb-atlas-connection-string>` with your actual connection string. You can get this from your [MongoDB Atlas Dashboard](https://cloud.mongodb.com/).
 
-Run:
+Example connection string format:
+```
+mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/fullstack-todo-app?retryWrites=true&w=majority
+```
 
+Start the backend server:
+
+```bash
 npm start
-# or
+# or for development with auto-restart
 npm run dev
+```
 
+Backend will be running at: `http://localhost:3000`
 
-Backend runs at: http://localhost:3000
+**3. Set up the frontend**
 
-3) Frontend
+```bash
 cd todo-frontend
-# open index.html directly
-# or (recommended)
-serve .
+```
 
+You can either:
+- Open `index.html` directly in your browser, or
+- Use a local server (recommended):
 
-Ensure frontend fetch URLs point to http://localhost:3000.
+```bash
+npx serve .
+```
 
-API (Essentials)
+Ensure all fetch URLs in the frontend code point to `http://localhost:3000`.
 
-Base URL: http://localhost:3000/api/todos
+---
 
-Method	Endpoint	Description
-GET	/	Get all todos
-GET	/:id	Get todo by id
-POST	/	Create todo
-PUT	/:id	Update todo
-DELETE	/:id	Delete todo
+## API Reference
 
-POST body example
+**Base URL:** `http://localhost:3000/api/todos`
 
+### Endpoints
+
+| Method | Endpoint | Description |
+|--------|----------|-------------|
+| GET | `/` | Retrieve all todos |
+| GET | `/:id` | Retrieve a specific todo by ID |
+| POST | `/` | Create a new todo |
+| PUT | `/:id` | Update an existing todo |
+| DELETE | `/:id` | Delete a todo |
+
+### Request Examples
+
+**Create a new todo (POST /)**
+
+```json
 {
-  "title": "Buy milk",
-  "completed": false,
-  "dueDate": "2025-12-31"
+  "task": "Buy milk",
+  "date": "2025-12-31",
+  "completed": false
 }
+```
 
-Validation & Errors
+**Update a todo (PUT /:id)**
 
-Server-side validation via express-validator
+```json
+{
+  "task": "Buy organic milk",
+  "date": "2025-12-31",
+  "completed": true
+}
+```
 
-Invalid input → 400 Bad Request with JSON errors
+---
 
-Graceful handling of 404 and 500 errors
+## Data Model
 
-Persistence
+### TodoItem Schema
 
-MongoDB via Mongoose
+| Field | Type | Required | Default | Description |
+|-------|------|----------|---------|-------------|
+| task | String | Yes | - | Todo task description |
+| date | Date | Yes | - | Task due date |
+| completed | Boolean | No | undefined | Task completion status |
+| timestamps | Auto | Auto | Auto | createdAt, updatedAt |
 
-Todo fields:
+---
 
-title (required)
+## Validation & Error Handling
 
-completed (default: false)
+- **Server-side validation** using express-validator ensures data integrity
+- **400 Bad Request** responses include detailed JSON error messages for invalid input
+- **404 Not Found** for non-existent resources
+- **500 Internal Server Error** with graceful error handling for server issues
 
-dueDate (optional)
+---
 
-timestamps
+## License
 
-License
+This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
 
-MIT — see LICENSE
+---
 
-Author
+## Author
 
-avkhalkar
-https://github.com/avkhalkar
+**avkhalkar**  
+GitHub: [@avkhalkar](https://github.com/avkhalkar)
