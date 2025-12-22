@@ -7,8 +7,6 @@ const path = require('path');
 // External modules
 const express = require('express');
 const cors = require('cors');
-// Local Utils
-const rootDir = require('./utils/pathUtil');
 
 // Routers
 const errorRouter = require('./routes/errorRouter');
