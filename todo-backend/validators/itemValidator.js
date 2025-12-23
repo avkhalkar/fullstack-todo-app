@@ -16,7 +16,7 @@ exports.itemValidation = [
         .withMessage("Please provide a date")
         .isISO8601()
         .withMessage("Date must be a valid ISO date")
-        .toDate(), // Converts to Mongoose-accepted-date-format
+        .toDate(), // Converts ISO date string to JavaScript Date object
 
     // Completion validation
     check("completed")
