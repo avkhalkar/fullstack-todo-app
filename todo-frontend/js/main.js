@@ -109,6 +109,7 @@ form.addEventListener("submit", async(e)=>{
 // Edit
 
 function handleEdit(item){
+  
   editingItemId = item._id;
 
   taskInput.value = item.task;
